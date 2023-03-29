@@ -1,0 +1,11 @@
+body {
+  padding: 50px 0px;
+  background: linear-gradient(#ffbcf5, #ff8eee) fixed;
+  font-family: sans-serif;
+}
+#root {
+  display: flex;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
