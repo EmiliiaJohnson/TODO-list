@@ -8,4 +8,4 @@ To start the project you need:
 4. Start project on a local server (npm run),
 5. Enjoy :]
 
-Github pages: _
+Github pages: https://emiliiajohnson.github.io/TODO-list/
