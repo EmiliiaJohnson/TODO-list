@@ -13,7 +13,7 @@ class TodoItems extends React.Component {
 
   createTasks(item) {    
     return (
-    <li onClick={() => 
+    <li onDoubleClick = {() => 
       this.delete(item.key)} 
       key={item.key}>
       {item.text}

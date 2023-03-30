@@ -53,12 +53,12 @@ class TodoList extends React.Component {
           <input ref={(a) => this._inputElement = a} 
           placeholder="Enter task">
           </input>
-          <button type="submit">Add task</button>
+          <button type="submit" >Add task</button>
           </form>
         </div>
         <TodoItems 
         entries={this.state.items}
-        delete={this.deleteItem}/>
+        delete = {this.deleteItem} />
       </div>
     );
   }
@@ -74,7 +74,6 @@ class TodoList extends React.Component {
   componentDidUpdate() {
     localStorage.setItem('items', JSON.stringify(this.state.items))
   }
-
 }
  
 export default TodoList;
