@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class TodoItems extends React.Component {  
 
@@ -15,8 +15,8 @@ class TodoItems extends React.Component {
     return (
     <li onDoubleClick = {() => 
       this.delete(item.key)} 
-      key={item.key}>
-      {item.text}
+      key = { item.key }>
+      { item.text }
       </li>
     )
   }   
@@ -26,8 +26,8 @@ class TodoItems extends React.Component {
     let listItems = todoEntries.map(this.createTasks);     
     
     return (      
-      <ul className="todo-items">
-          {listItems}
+      <ul className = 'todo-items'>
+          { listItems }
       </ul>
       );  
     }

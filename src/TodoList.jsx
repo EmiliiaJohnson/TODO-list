@@ -1,5 +1,5 @@
 import React from 'react';
-import './TodoList.css';
+import './index.css';
 import TodoItems from './TodoItems';
 
 class TodoList extends React.Component { 
@@ -7,17 +7,34 @@ class TodoList extends React.Component {
     super(props);     
 
     this.state = {    
-      items: []  
+      items: [],
+      theme: this.getInitialTheme()
     };
 
+    this.switchTheme = this.switchTheme.bind(this); 
     this.addItem = this.addItem.bind(this); 
     this.deleteItem = this.deleteItem.bind(this);
   }
 
-  addItem(e) {
-    var itemArray = this.state.items;
+  getInitialTheme() {
+    try {
+      const savedTheme = JSON.parse(localStorage.getItem('theme')) || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      return savedTheme;
+    } catch {
+      return 'light';
+    }
+  }
+  switchTheme() {
+    const theme = this.state.theme === 'light' ? 'dark' : 'light';
+    this.setState({ theme });
+    document.documentElement.setAttribute('data-theme', theme);
+  }
 
-    if (this._inputElement.value !== "") {    
+  addItem(e) {
+    let itemArray = this.state.items;
+
+    if (this._inputElement.value !== '') {    
       itemArray.unshift(
         {      
           text: this._inputElement.value,      
@@ -29,14 +46,14 @@ class TodoList extends React.Component {
         items: itemArray    
       });   
 
-      this._inputElement.value = "";  
+      this._inputElement.value = '';  
     }   
     console.log(itemArray);   
     e.preventDefault();
   }
 
   deleteItem(key) {  
-    var filteredItems = this.state.items.filter(function (item) {    
+    let filteredItems = this.state.items.filter(function (item) {    
       return (item.key !== key);  
     }); 
 
@@ -47,32 +64,35 @@ class TodoList extends React.Component {
 
   render() {
       return (
-      <div className="todo-list">
-        <div className="todo-form">
-          <form onSubmit={this.addItem}>
-          <input ref={(a) => this._inputElement = a} 
-          placeholder="Enter task">
-          </input>
-          <button type="submit" >Add task</button>
-          </form>
+      <div className='wrapper'>
+        <div className = 'todo-list'>
+          <div className = 'todo-form'>
+            <form onSubmit = { this.addItem }>
+            <input ref = { (a) => this._inputElement = a } 
+            placeholder = 'Enter task'>
+            </input>
+            <button type = 'submit'>Add task</button>
+            </form>
+          </div>
+          <TodoItems 
+          entries = { this.state.items }
+          delete = { this.deleteItem }/>
         </div>
-        <TodoItems 
-        entries={this.state.items}
-        delete = {this.deleteItem} />
-      </div>
+        <button className='button-switch' onClick = { this.switchTheme }>Switch theme</button>
+       </div>
     );
   }
 
   componentWillMount() {
-    let itemsList = localStorage.getItem('items')
-    if (itemsList) {
-      this.setState({
-        items: JSON.parse(localStorage.getItem('items'))
-      })
-    }
+    this.setState({
+      items: JSON.parse(localStorage.getItem('items'))
+    })
   }
+
+
   componentDidUpdate() {
-    localStorage.setItem('items', JSON.stringify(this.state.items))
+    localStorage.setItem('items', JSON.stringify(this.state.items));
+    localStorage.setItem('theme', JSON.stringify(this.state.theme));
   }
 }
  
