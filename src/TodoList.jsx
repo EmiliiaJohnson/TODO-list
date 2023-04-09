@@ -25,6 +25,7 @@ class TodoList extends React.Component {
       return 'light';
     }
   }
+
   switchTheme() {
     const theme = this.state.theme === 'light' ? 'dark' : 'light';
     this.setState({ theme });
@@ -47,8 +48,7 @@ class TodoList extends React.Component {
       });   
 
       this._inputElement.value = '';  
-    }   
-    console.log(itemArray);   
+    }    
     e.preventDefault();
   }
 
@@ -78,7 +78,7 @@ class TodoList extends React.Component {
           entries = { this.state.items }
           delete = { this.deleteItem }/>
         </div>
-        <button className='button-switch' onClick = { this.switchTheme }>Switch theme</button>
+        <button className={this.state.theme === 'dark' ? 'icon-moon' : 'icon-sun'} onClick = {this.switchTheme}></button>
        </div>
     );
   }

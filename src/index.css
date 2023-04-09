@@ -33,9 +33,23 @@ body {
     margin: 0 auto;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .wrapper {
     width: 70%;
-    padding-top: 50px;
+    padding-top: 40px;
+}
+
+.icon-sun {
+    background-image: url(./icons/sun.svg);
+    border: 1px solid #ce9cdce0;
+}
+
+.icon-moon {
+    background-image: url(./icons/moon.svg);
+    border: 1px solid #d190ff;
 }
 
 .todo-list {
@@ -70,15 +84,25 @@ body {
 
 ::placeholder { 
     color: var(--placeholder-text);
-  }
+}
 
-.button-switch {
-    position: absolute;
+.icon-sun, .icon-moon {
+    cursor: pointer;
+    transition: all .3s;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    border-radius: 75px;
+    background-color: transparent;
+    position: fixed;
     bottom: 15px;
     right: 15px;
     padding: 10px;
-    font-size: 15px;
-    width: fit-content;
+}
+
+.todo-form {
+    position: sticky;
 }
 
 .todo-form form {
@@ -99,6 +123,15 @@ body {
     box-shadow: 0 5px 30px var(--box-shadow);
 }
 
+.icon-sun:hover, .icon-moon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 30px var(--box-shadow);
+}
+
+.icon-sun:active, .icon-moon:active {
+    transform: scaleX(0);
+}
+
 .todo-items li:hover {
     box-shadow: none;
 }
@@ -108,13 +141,26 @@ body {
     box-shadow: 0 5px 10px var(--box-shadow);
 }
 
-.todo-items {
+.todo-items {    
+    display: flex;
+    flex-direction: column-reverse;
     list-style: none;
     padding-left: 0;
     margin-top: 30px;
+    max-height: 70vh;
+    overflow: auto;
 } 
 
 @media (max-width: 585px) {
+    .wrapper {
+    padding-top: 0px;
+    }
+
+    .todo-form {
+    position: fixed;
+    bottom: 45px;
+    }
+
   .todo-form form {
     flex-direction: column;
   }
@@ -122,6 +168,11 @@ body {
   .todo-form button { 
     width: 100%;
     margin: 10px 0;
+  }
+
+  .icon-sun, .icon-moon {
+    top: 15px;
+    bottom: auto;
   }
 
   .todo-form input {
@@ -138,5 +189,19 @@ body {
     background-color: var(--button-item);
     transform: none;
     box-shadow: none;
+  }
+
+  .icon-sun:hover, .icon-moon:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.icon-sun:active, .icon-moon:active {
+    transform: scaleX(0);
+}
+
+  .todo-items {
+    height: 65vh;
+    margin-top: 70px;
   }
 }
