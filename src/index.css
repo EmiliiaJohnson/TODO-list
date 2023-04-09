@@ -159,6 +159,9 @@ body {
     .todo-form {
     position: fixed;
     bottom: 45px;
+    transform: translate(-50%);
+    left: 50%;
+    width: 70%;
     }
 
   .todo-form form {
@@ -194,14 +197,14 @@ body {
   .icon-sun:hover, .icon-moon:hover {
     transform: none;
     box-shadow: none;
-}
+    }
 
-.icon-sun:active, .icon-moon:active {
-    transform: scaleX(0);
-}
+    .icon-sun:active, .icon-moon:active {
+     transform: scaleX(0);
+    }
 
   .todo-items {
-    height: 65vh;
+    height: 58vh;
     margin-top: 70px;
   }
 }
